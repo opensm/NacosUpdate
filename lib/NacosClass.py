@@ -6,12 +6,12 @@ from lib.settings import BACKUP_DIR, NACOS_CONFIG
 import os
 import glob
 import platform
+import yaml
 
 
-def cmd(cmd_str, replace=''):
+def cmd(cmd_str):
     """
     :param cmd_str:
-    :param replace:
     :return:
     """
     if int(platform.python_version().strip(".")[0]) < 3:
@@ -26,10 +26,10 @@ def cmd(cmd_str, replace=''):
         status, output = exec_proc.getstatusoutput(cmd_str)
         if status != 0:
             raise Exception(output)
-        RecodeLog.info("执行:{0},成功!".format(cmd_str).replace(replace, '********'))
+        RecodeLog.info("执行:{0},成功!".format(cmd_str))
         return True
     except Exception as error:
-        RecodeLog.error(msg="执行:{0},失败，原因:{1}".format(cmd_str, error).replace(replace, '********'))
+        RecodeLog.error(msg="执行:{0},失败，原因:{1}".format(cmd_str, error))
         return False
 
 
@@ -51,9 +51,9 @@ class NacosClass:
             return False
         data = yaml_achieve.split(os.sep)
         try:
-            with open(yaml_achieve, 'r') as fff:
+            with open(yaml_achieve, 'r', encoding="UTF-8") as fff:
                 self.nacos.publish_config(
-                    content=fff.readlines(),
+                    content=yaml.load(fff, Loader=yaml.FullLoader),
                     config_type=config_type,
                     timeout=30,
                     data_id=data[-1],
