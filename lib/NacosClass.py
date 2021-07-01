@@ -104,7 +104,7 @@ class NacosClass:
         ):
             return False
         self.ftp.download(remote_path=sql_data[2], local_path=self.backup_dir, achieve=zipfile)
-        unzip_shell_string = 'unzip {} -df {} '.format(
+        unzip_shell_string = 'unzip -f {} -d {} '.format(
             os.path.join(self.backup_dir, zipfile),
             os.path.join(self.backup_dir, name))
         if not cmd(cmd_str=unzip_shell_string):
