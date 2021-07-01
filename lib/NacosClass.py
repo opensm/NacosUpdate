@@ -77,17 +77,13 @@ class NacosClass:
                 address = 'https://{}:{}'.format(content['host'], content['port'])
             else:
                 address = 'http://{}:{}'.format(content['host'], content['port'])
-            try:
-                self.nacos = nacos.NacosClient(
-                    address,
-                    namespace=namespace,
-                    username=content['user'],
-                    password=content['passwd']
-                )
-                return True
-            except Exception as error:
-                RecodeLog.error(msg='初始化失败:{}'.format(error))
-                return False
+            self.nacos = nacos.NacosClient(
+                address,
+                namespace=namespace,
+                username=content['user'],
+                password=content['passwd']
+            )
+            return True
         except Exception as error:
             RecodeLog.error(msg="Mongodb登录验证失败,{}".format(error))
             return False
@@ -106,10 +102,11 @@ class NacosClass:
                 content=NACOS_CONFIG[sql_data[2]],
                 namespace=sql_data[3]
         ):
-            RecodeLog
             return False
         self.ftp.download(remote_path=sql_data[2], local_path=self.backup_dir, achieve=zipfile)
-        unzip_shell_string = 'unzip {} -d {} '.format(zipfile, name)
+        unzip_shell_string = 'unzip {} -d {} '.format(
+            os.path.join(self.backup_dir, zipfile),
+            os.path.join(self.backup_dir, name))
         if not cmd(cmd_str=unzip_shell_string):
             RecodeLog.error(msg="解压文件失败：{}".format(unzip_shell_string))
             return False
