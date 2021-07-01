@@ -29,14 +29,14 @@ def main():
         sys.exit()
     # 获取监控项数据
     elif "-f" in command_dict:
-        command_data['achieve'] = command_dict.get('-f')
-        sql_data = command_data['achieve'].split("#")
+        command_data['zipfile'] = command_dict.get('-f')
+        sql_data = command_data['zipfile'].split("#")
         if len(sql_data) != 4:
             print("输入格式错误")
             sys.exit(1)
         if sql_data[1] == 'nacos':
             ff = NacosClass()
-            ff.run(zipfile=sql_data)
+            ff.run(**command_data)
         else:
             print("error input file")
             sys.exit(1)
