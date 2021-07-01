@@ -75,9 +75,9 @@ class NacosClass:
             return False
         try:
             if content['port'] == 443:
-                address = 'https://{}:{}'.format(content['host'], content['port'])
+                address = 'https://{}:{}/nacos'.format(content['host'], content['port'])
             else:
-                address = 'http://{}:{}'.format(content['host'], content['port'])
+                address = 'http://{}:{}/nacos'.format(content['host'], content['port'])
             self.nacos = nacos.NacosClient(
                 address,
                 namespace=namespace,
