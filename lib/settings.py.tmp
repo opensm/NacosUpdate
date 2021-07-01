@@ -1,0 +1,23 @@
+LOG_DIR = "/tmp"
+LOG_FILE = "/tmp/nacos.log"
+LOG_LEVEL = "INFO"
+# FTP地址
+FTP_CONFIG = {
+    "nacos": {
+        "host": "",
+        "port": 2121,
+        "user": "",
+        "password": ""
+    }
+}
+
+BACKUP_DIR = '/data/backup'
+# nacos 地址
+NACOS_CONFIG = {
+    "pre": {
+    },
+    "prod": {
+    },
+    "dev": {
+    }
+}
