@@ -54,7 +54,8 @@ class NacosClass:
             with open(yaml_achieve, 'r') as fff:
                 print(yaml.load(fff, Loader=yaml.FullLoader))
                 self.nacos.publish_config(
-                    content=yaml.load(fff, Loader=yaml.FullLoader),
+                    # content=yaml.load(fff, Loader=yaml.FullLoader),
+                    content="tetst=data",
                     config_type=config_type,
                     timeout=30,
                     data_id=data[-1],
