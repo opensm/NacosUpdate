@@ -55,8 +55,8 @@ class NacosClass:
                 load_dict = yaml.load_all(fff, Loader=yaml.Loader)
                 self.nacos.publish_config(
                     content=yaml.dump_all(
-                        load_dict
-                        , allow_unicode=True
+                        load_dict,
+                        allow_unicode=True
                     ),
                     config_type=config_type,
                     timeout=30,
