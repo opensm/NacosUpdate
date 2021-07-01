@@ -53,7 +53,7 @@ class NacosClass:
         try:
             with open(yaml_achieve, 'r') as fff:
                 self.nacos.publish_config(
-                    content=yaml.dump_all(fff),
+                    content=yaml.dump_all(fff).strip('\n').strip('\r'),
                     config_type=config_type,
                     timeout=30,
                     data_id=data[-1],
