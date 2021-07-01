@@ -53,10 +53,7 @@ class NacosClass:
         try:
             with open(yaml_achieve, 'r') as fff:
                 dd = yaml.load_all(fff, Loader=yaml.Loader)
-                for a in dd:
-                    print(111111111111)
-                    print(a)
-                    print(222222222222)
+                print(dd[0])
                 self.nacos.publish_config(
                     content=yaml.dump_all(fff, allow_unicode=True),
                     config_type=config_type,
@@ -65,7 +62,6 @@ class NacosClass:
                     group=data[-2]
                 )
         except Exception as error:
-            print(error)
             RecodeLog.error(msg="上传配置失败:{}".format(error))
             return False
 
@@ -89,7 +85,6 @@ class NacosClass:
                 username=content['user'],
                 password=content['passwd']
             )
-            self.nacos.set_debugging()
             return True
         except Exception as error:
             RecodeLog.error(msg="登录验证失败,{}".format(error))
