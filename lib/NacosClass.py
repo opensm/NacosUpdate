@@ -85,7 +85,7 @@ class NacosClass:
             )
             return True
         except Exception as error:
-            RecodeLog.error(msg="Mongodb登录验证失败,{}".format(error))
+            RecodeLog.error(msg="登录验证失败,{}".format(error))
             return False
 
     def run(self, zipfile):
