@@ -59,8 +59,7 @@ class NacosClass:
                     config_type=config_type,
                     timeout=30,
                     data_id=data[-1],
-                    group=data[-2],
-                    encode='utf8'
+                    group=data[-2]
                 )
         except Exception as error:
             RecodeLog.error(msg="上传配置失败:{}".format(error))
