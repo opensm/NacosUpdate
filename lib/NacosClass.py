@@ -69,7 +69,6 @@ class NacosClass:
         :param namespace:
         :return:
         """
-        print(content, namespace)
         if not isinstance(content, dict):
             RecodeLog.error(msg="选择模板错误：{}！".format(content))
             return False
