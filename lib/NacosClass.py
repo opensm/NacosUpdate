@@ -52,7 +52,8 @@ class NacosClass:
         data = yaml_achieve.split(os.sep)
         try:
             with open(yaml_achieve, 'r') as fff:
-                print(yaml.load_all(fff, Loader=yaml.Loader))
+                dd = yaml.load_all(fff, Loader=yaml.Loader)
+                print(dd)
                 self.nacos.publish_config(
                     content=yaml.dump_all(fff, allow_unicode=True),
                     config_type=config_type,
