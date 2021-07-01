@@ -63,6 +63,7 @@ class NacosClass:
                     data_id=data[-1],
                     group=data[-2]
                 )
+                return True
         except Exception as error:
             RecodeLog.error(msg="上传配置失败:{}".format(error))
             return False
