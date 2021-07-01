@@ -65,7 +65,7 @@ class NacosClass:
             RecodeLog.error(msg="上传配置失败:{}".format(error))
             return False
 
-    def connect_nacos(self, content, namespace):
+    def connect_nacos(self, content, namespace=''):
         """
         :param content:
         :param namespace:
@@ -102,8 +102,7 @@ class NacosClass:
             return False
         sql_data = name.split("#")
         if not self.connect_nacos(
-                content=NACOS_CONFIG[sql_data[2]],
-                namespace=sql_data[3]
+                content=NACOS_CONFIG[sql_data[2]]
         ):
             return False
         self.ftp.download(remote_path=sql_data[2], local_path=self.backup_dir, achieve=zipfile)
