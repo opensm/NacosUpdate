@@ -52,6 +52,7 @@ class NacosClass:
         data = yaml_achieve.split(os.sep)
         try:
             with open(yaml_achieve, 'r') as fff:
+                print(yaml.load(fff, Loader=yaml.FullLoader))
                 self.nacos.publish_config(
                     content=yaml.load(fff, Loader=yaml.FullLoader),
                     config_type=config_type,
