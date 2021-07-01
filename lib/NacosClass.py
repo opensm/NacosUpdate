@@ -110,7 +110,7 @@ class NacosClass:
         if not cmd(cmd_str=unzip_shell_string):
             RecodeLog.error(msg="解压文件失败：{}".format(unzip_shell_string))
             return False
-        for yml in glob.glob("*/*/*.yaml"):
+        for yml in glob.glob(os.path.join(self.backup_dir, name, "*", "*.yaml")):
             if not self.upload_config(yaml_achieve=yml, config_type='yaml'):
                 RecodeLog.error(msg="导入相关配置失败")
                 return False
