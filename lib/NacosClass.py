@@ -53,9 +53,12 @@ class NacosClass:
         try:
             with open(yaml_achieve, 'r') as fff:
                 dd = yaml.load_all(fff, Loader=yaml.Loader)
-                print(dd[0])
+
                 self.nacos.publish_config(
-                    content=yaml.dump_all(fff, allow_unicode=True),
+                    content=yaml.dump_all(
+                        {'spring': {'cloud': {
+                            'nacos': {'config': {'server-addr': 'http://nacos:8848', 'file-extension': 'yaml'}}}}}
+                        , allow_unicode=True),
                     config_type=config_type,
                     timeout=30,
                     data_id=data[-1],
