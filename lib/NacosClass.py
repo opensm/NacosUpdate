@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import nacos
 from lib.Log import RecodeLog
 from lib.lftp import FTPBackupForDB
