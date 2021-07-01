@@ -52,7 +52,6 @@ class NacosClass:
         data = yaml_achieve.split(os.sep)
         try:
             with open(yaml_achieve, 'r') as fff:
-                print(yaml.load(fff, Loader=yaml.FullLoader))
                 self.nacos.publish_config(
                     content=yaml.dump_all(fff),
                     config_type=config_type,
@@ -70,6 +69,7 @@ class NacosClass:
         :param namespace:
         :return:
         """
+        print(content, namespace)
         if not isinstance(content, dict):
             RecodeLog.error(msg="选择模板错误：{}！".format(content))
             return False
@@ -84,7 +84,6 @@ class NacosClass:
                 username=content['user'],
                 password=content['passwd']
             )
-            print(self.nacos)
             return True
         except Exception as error:
             RecodeLog.error(msg="登录验证失败,{}".format(error))
