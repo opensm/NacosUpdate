@@ -53,7 +53,8 @@ class NacosClass:
         try:
             with open(yaml_achieve, 'r') as fff:
                 dd = yaml.load_all(fff, Loader=yaml.Loader)
-                print(dd)
+                for data in dd:
+                    print(data)
                 self.nacos.publish_config(
                     content=yaml.dump_all(fff, allow_unicode=True),
                     config_type=config_type,
