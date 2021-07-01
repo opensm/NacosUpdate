@@ -84,6 +84,7 @@ class NacosClass:
                 username=content['user'],
                 password=content['passwd']
             )
+            self.nacos.set_debugging()
             return True
         except Exception as error:
             RecodeLog.error(msg="登录验证失败,{}".format(error))
