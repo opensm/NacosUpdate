@@ -49,7 +49,7 @@ class NacosClass:
         if not os.path.exists(yaml_achieve):
             RecodeLog.error(msg="文件不存在:{}".format(yaml_achieve))
             return False
-        data = yaml_achieve.split(os.path.sep)
+        data = yaml_achieve.split(os.sep)
         try:
             with open(yaml_achieve, 'r') as fff:
                 self.nacos.publish_config(
