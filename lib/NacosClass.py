@@ -84,9 +84,10 @@ class NacosClass:
                     username=content['user'],
                     password=content['passwd']
                 )
+                return True
             except Exception as error:
                 RecodeLog.error(msg='初始化失败:{}'.format(error))
-                return True
+                return False
         except Exception as error:
             RecodeLog.error(msg="Mongodb登录验证失败,{}".format(error))
             return False
@@ -105,6 +106,7 @@ class NacosClass:
                 content=NACOS_CONFIG[sql_data[2]],
                 namespace=sql_data[3]
         ):
+            RecodeLog
             return False
         self.ftp.download(remote_path=sql_data[2], local_path=self.backup_dir, achieve=zipfile)
         unzip_shell_string = 'unzip {} -d {} '.format(zipfile, name)
