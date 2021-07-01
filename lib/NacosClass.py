@@ -52,17 +52,12 @@ class NacosClass:
         data = yaml_achieve.split(os.sep)
         try:
             with open(yaml_achieve, 'r') as fff:
-                print(
-                    yaml.dump_all(
-                        {'spring': {'cloud': {
-                            'nacos': {'config': {'server-addr': 'http://nacos:8848', 'file-extension': 'yaml'}}}}}
-                        , allow_unicode=True)
-                )
+                load_dict = yaml.load_all(fff, Loader=yaml.Loader)
                 self.nacos.publish_config(
                     content=yaml.dump_all(
-                        {'spring': {'cloud': {
-                            'nacos': {'config': {'server-addr': 'http://nacos:8848', 'file-extension': 'yaml'}}}}}
-                        , allow_unicode=True),
+                        load_dict
+                        , allow_unicode=True
+                    ),
                     config_type=config_type,
                     timeout=30,
                     data_id=data[-1],
