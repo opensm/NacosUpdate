@@ -7,6 +7,7 @@ import os
 import glob
 import platform
 import yaml
+import shutil
 
 
 def cmd(cmd_str):
@@ -108,9 +109,12 @@ class NacosClass:
         ):
             return False
         self.ftp.download(remote_path=sql_data[2], local_path=self.backup_dir, achieve=zipfile)
-        unzip_shell_string = 'unzip -f {} -d {} '.format(
+        if os.path.exists(os.path.join(self.backup_dir, name)):
+            shutil.rmtree(path=os.path.join(self.backup_dir, name))
+        unzip_shell_string = 'unzip {} -d {} '.format(
             os.path.join(self.backup_dir, zipfile),
-            os.path.join(self.backup_dir, name))
+            os.path.join(self.backup_dir, name)
+        )
         if not cmd(cmd_str=unzip_shell_string):
             RecodeLog.error(msg="解压文件失败：{}".format(unzip_shell_string))
             return False
